@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const TIE = 0;
+    const WIN = 1;
+    const LOST = 2;
+    let items = [
+        "rock",
+        "paper",
+        "scissors"];
+    let machineoption = Object;
+
+    let me = 0;
+    let you = 0;
+
+    game();
+
+    function game() {
+        for (let index = 0; index < 5; index++) {
+            let userOption = prompt("rock, paper, scissors or exit");
+            userOption = userOption.toLocaleLowerCase()
+            if (userOption == "exit") {
+                return -1;
+            }
+            console.log(`player's choice: ${userOption}`)
+            let result = playRound(userOption, computerPlay());
+            console.log(result)
+            switch (result) {
+                case "WIN":
+                    me++;
+                    break;
+                case "LOST":
+                    you++;
+                    break;
+                default:
+                    index--;
+                    break;
+            }
+        }
+        let ultimate = resultado (me, you); 
+        console.log(me)
+        console.log(you)
+        console.log(ultimate)
+    }
+
+    function resultado(){
+        if (me > you) {
+                return "YOU WIN THE GAME c:";
+            }
+            else {
+                return "YOU LOST :c";
+            }
+        return resultado;
+    }
+
+    function playRound(userOption, move) {
+        if (!items.includes(userOption)) { return "ERROR, PLEASE CHOICE: ROCK, PAPER OR SCISSORS" }
+        if (move.value == userOption) { return "TIE"; }
+        if (move.win == userOption) { return "LOST"; }
+        return "WIN";
+    }
+
+    function computerPlay() {
+        machineoption.value = items[Math.floor(Math.random() * items.length)];
+        console.log(`machine's choice: ${machineoption.value}`)
+        if (machineoption.value == "rock") { machineoption.win = "scissors"; }
+        if (machineoption.value == "paper") { machineoption.win = "rock"; }
+        if (machineoption.value == "scissors") { machineoption.win = "paper"; }
+        return machineoption;
+    }
+</script>
+
+</html>
